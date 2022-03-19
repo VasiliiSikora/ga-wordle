@@ -1,0 +1,22 @@
+.letter {
+    border: 1px solid black;
+    width: 50px;
+    height: 50px;
+    display: inline-block;
+}
+
+.guesses {
+    /* display: grid;
+    grid-template-columns: 1; */
+    display: flex;
+    flex-direction: column;
+}
+body div {
+    margin: 0 auto;
+}
+h1 {
+    text-align: center;
+    border-bottom: 0.5px solid gray;
+    padding-bottom: 5px;
+    margin: 15px;
+}

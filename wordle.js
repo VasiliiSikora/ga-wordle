@@ -43,10 +43,11 @@ const randomAnswer = words[Math.floor(Math.random() * words.length)];
 console.log(randomAnswer)
 
 
-let answer = "chief" // This needs to randomly select from array
+
 let guesses = document.getElementsByClassName('guess');
 // let thisGuess = document.getElementById('guessText') //Will need to add to HTML
 let enterButton = document.getElementById('enter')
+let buttons = document.getElementsByClassName('key')
 let output = '';
 let end = false;
 
@@ -56,8 +57,9 @@ enterButton.addEventListener('click', function() { //Will need to add to HTML (k
     let kids = guesses[guessCounter].children
     for (let i in output) {
         kids[i].innerText = output[i]
-        if (answer.includes(output[i])) {
-            if (output[i] == answer[i]) {
+        if (randomAnswer.includes(output[i])) {
+            console.log(i)
+            if (output[i] == randomAnswer[i]) {
                 kids[i].style.backgroundColor = 'green'
             } else {
                 kids[i].style.backgroundColor = 'gold'
@@ -67,28 +69,53 @@ enterButton.addEventListener('click', function() { //Will need to add to HTML (k
             kids[i].style.backgroundColor = 'grey'
         }
         kids[i].style.color = 'white'
+        for (let j=0; j<buttons.length; j++) {
+
+            if (buttons[j].innerText.toUpperCase() == output[i]) {
+
+                buttons[j].style.backgroundColor = kids[i].style.backgroundColor
+            }     
+        }
     }
+
     output = ''
     guessCounter++
+
 })
 
 //Below is the code for the keyboard functionality
 
 let keys = document.getElementsByClassName('key');
+
 for (let keyElement of keys) {
     let key = keyElement.textContent;
+    // let kids = guesses[guessCounter].children
+
     keyElement.addEventListener('click', function() {
+        let kids = guesses[guessCounter].children
         if (output.length < 5) {
             switch (key) {
                 case '␡':
                     output = output.slice(0, output.length-1);
+                    console.log(output)
+                    if (output=="") {kids[0].innerText=""}
+                    else {
+                        for (let i=0; i<output.length; i++) {
+                            output = output.toUpperCase();
+                            kids[i].innerText = output[i]
+                            console.log(kids[i].innerText)
+                            kids[i+1].innerText=""
+                        }
+                    }
+
                     break;
                 case 'ENTER':
-                    break
+
+                    break;
                 default:
                     output += key;
             }
-            let kids = guesses[guessCounter].children
+
             for (let i=0; i<output.length; i++) {
                 output = output.toUpperCase();
                 kids[i].innerText = output[i]
@@ -97,14 +124,14 @@ for (let keyElement of keys) {
     });
 }
 
-while (!end) {
-    let kids = guesses[guessCounter].children
-    for (let i=0; i<output.length; i++) {
+// while (!end) {
+//     let kids = guesses[guessCounter].children
+//     for (let i=0; i<output.length; i++) {
 
-        kids[i].innerText = output[i]
-    }
-    end = true
-}
+//         kids[i].innerText = output[i]
+//     }
+//     end = true
+// }
 
 
 // let output = document.getElementById('guessText');

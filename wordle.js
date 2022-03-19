@@ -34,9 +34,56 @@ NOTE: apply same rules to the keyboard
 
 */
 
-let guesses = document.getElementsByClassName('guess');
-console.log(guesses[0])
-let guessCounter = 0
-enterButton.addEventlistener('click', function() {
 
+
+
+
+
+let answer = "chief" // This needs to randomly select from array
+let guesses = document.getElementsByClassName('guess');
+let thisGuess = document.getElementById('guessText') //Will need to add to HTML
+let enterButton = document.getElementById('enter')
+
+
+
+let guessCounter = 0
+enterButton.addEventListener('click', function() { //Will need to add to HTML (keyboard)
+    let kids = guesses[guessCounter].children
+    console.log(thisGuess.value)
+    for (let i in thisGuess.value) {
+        console.log(i)
+        console.log(kids[i])
+        kids[i].innerText = thisGuess.value[i]
+        if (answer.includes(thisGuess.value[i])) {
+            if (thisGuess.value[i] == answer[i]) {
+                kids[i].style.backgroundColor = 'green'
+            } else {
+                kids[i].style.backgroundColor = 'gold'
+            }
+            
+        } else {
+            kids[i].style.backgroundColor = 'grey'
+        }
+    }
+
+    guessCounter++
 })
+
+//Below is the code for the keyboard functionality
+let output = document.getElementById('guessText');
+let keys = document.getElementsByClassName('key');
+for (let keyElement of keys) {
+    let key = keyElement.textContent;
+    keyElement.addEventListener('click', function() {
+        switch (key) {
+            case '␡':
+                output.textContent = output.textContent.slice(0, output.textContent.length-1);
+                break;
+            case 'DEL all':
+                output.textContent = '';
+                break;
+            default:
+                output.textContent += key;
+        }
+    });
+}

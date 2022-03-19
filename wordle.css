@@ -3,6 +3,12 @@
     width: 50px;
     height: 50px;
     display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 50px; 
+    font-size: larger;
+    transition-property: all;
+    transition-duration: 2s;
 }
 
 .guesses {
@@ -10,6 +16,7 @@
     grid-template-columns: 1; */
     display: flex;
     flex-direction: column;
+    gap: 5px;
 }
 body div {
     margin: 0 auto;
@@ -19,4 +26,50 @@ h1 {
     border-bottom: 0.5px solid gray;
     padding-bottom: 5px;
     margin: 15px;
+}
+
+
+/* Keyboard CSS Below Here */
+.keyboard{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 5px 5px 15px rgb(0, 0, 0, .3), -8px -8px 15px rgb(245, 245, 245, .25);
+    border-radius: 20px
+}
+.keyboard {
+    margin: 10px 0 0 0;
+    background-color: #b9b9b9;
+}
+body {
+    display: flex;
+    flex-direction: column;
+
+}
+.row {
+    display: flex;
+    flex-shrink: 1;
+    flex-wrap: nowrap;
+    justify-content: center;
+    width: 100%;
+    gap: 5px;
+}
+#output {
+    margin: 0 auto;
+    color: black;
+    font-family: monospace;
+
+}
+.key {
+    height: 40px;
+    width: 40px;
+    border-radius: 10px;
+    border: 2px solid #a3b1c6;
+    box-shadow: 3px 3px 15px rgb(0, 0, 0, .3), -5px -5px 15px rgb(245, 245, 245, .25);
+    /* margin: 5px; */
+    background: #1d1d1d;
+    color: white;
+}
+#enter {
+    width: 80px;
 }

@@ -67,6 +67,33 @@ enterButton.addEventListener('click', function() { //Will need to add to HTML (k
         return 
     } else {
     //check letter placement and change colours
+
+    /*
+        Pseudo-Code for guesses with multiple same letters
+            Answer: randomAnswer
+            Guess: output
+            Guess with greens removed = output2 = output
+        First Loop - Check (output) for Green Letters
+            Check output[i] against randomAnswer[i]
+            if (output[i] == randomAnswer[i]) {
+                <change to green>
+                output2[i] == ""
+            } else {
+                continue <- not needed?
+            }
+        Second Loop - Check remaining letters (output2) for Yellow or Grey
+            Check output2[i] against randomAnswer[i]
+            if (output2[i] == "") {
+                continue
+            } else if (randomAnswer.includes(output2[i])) {
+                <change to yellow>
+            } else {
+                <change to grey>
+            }
+
+
+    */
+
     for (let i in output) {
         kids[i].innerText = output[i]
         randomAnswer = randomAnswer.toUpperCase()

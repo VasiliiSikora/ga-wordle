@@ -41,8 +41,8 @@ const validWords=["cigar","rebut","sissy","humph","awake","blush","focal","evade
 
 //This code randomly chooses a word to be the answer
 let words = validWords
-// let randomAnswer = words[Math.floor(Math.random() * words.length)];
-let randomAnswer = 'easts';
+let randomAnswer = words[Math.floor(Math.random() * words.length)];
+// let randomAnswer = 'easts';
 console.log(randomAnswer)
 
 
@@ -56,7 +56,7 @@ let end = false;
 
 
 let guessCounter = 0
-enterButton.addEventListener('click', function() { //Will need to add to HTML (keyboard)
+enterButton.addEventListener('click', function() { 
     //add condition to check if guess is a real word, alert, and erase guess
     let kids = guesses[guessCounter].children
     if (!validGuesses.includes(output)) {
@@ -126,9 +126,29 @@ enterButton.addEventListener('click', function() { //Will need to add to HTML (k
         }
 
     }
+//Adding wind/loss conditions
+let winChecker = 0
+    setTimeout(function () {
+        for (let i in randomAnswer) {
+            if (kids[i].style.backgroundColor == 'green') {
+                winChecker++
+            }
 
-    output = ''
-    guessCounter++
+        }
+        if (winChecker == 5) {
+            alert(`You win! ${randomAnswer.toUpperCase()} was the word!`)
+            return
+        }
+    
+        output = ''
+        guessCounter++
+        if (guessCounter == 6) {
+            alert(`You LOSE! ${randomAnswer.toUpperCase()} was the word!`)
+            return
+        }
+    }, 1000)
+
+
 }
 
 })
@@ -172,77 +192,3 @@ for (let keyElement of keys) {
     });
 }
 
-// while (!end) {
-//     let kids = guesses[guessCounter].children
-//     for (let i=0; i<output.length; i++) {
-
-//         kids[i].innerText = output[i]
-//     }
-//     end = true
-// }
-
-
-// let output = document.getElementById('guessText');
-// let keys = document.getElementsByClassName('key');
-// for (let keyElement of keys) {
-//     let key = keyElement.textContent;
-//     keyElement.addEventListener('click', function() {
-//         switch (key) {
-//             case '␡':
-//                 output.textContent = output.textContent.slice(0, output.textContent.length-1);
-//                 break;
-//             case 'DEL all':
-//                 output.textContent = '';
-//                 break;
-//             default:
-//                 output.textContent += key;
-//         }
-//     });
-// }
-
-// enterButton.addEventListener('click', function() { //Will need to add to HTML (keyboard)
-//     let kids = guesses[guessCounter].children
-//     for (let i in thisGuess.value) {
-//         kids[i].innerText = thisGuess.value[i]
-//         if (answer.includes(thisGuess.value[i])) {
-//             if (thisGuess.value[i] == answer[i]) {
-//                 kids[i].style.backgroundColor = 'green'
-//             } else {
-//                 kids[i].style.backgroundColor = 'gold'
-//             }
-            
-//         } else {
-//             kids[i].style.backgroundColor = 'grey'
-//         }
-//     }
-//     output = ''
-//     guessCounter++
-// })
-
-// for (let i in output) {
-//     kids[i].innerText = output[i]
-//     randomAnswer = randomAnswer.toUpperCase()
-//     if (randomAnswer.includes(output[i])) {
-//         console.log(i)
-//         if (output[i] == randomAnswer[i]) {
-//             kids[i].style.backgroundColor = 'green'
-//         } else {
-//             kids[i].style.backgroundColor = 'gold'
-//         }
-        
-//     } else {
-//         kids[i].style.backgroundColor = 'grey'
-//     }
-//     kids[i].style.color = 'white'
-//     for (let j=0; j<buttons.length; j++) {
-
-//         if (buttons[j].innerText.toUpperCase() == output[i]) {
-
-//             buttons[j].style.backgroundColor = kids[i].style.backgroundColor
-//         }     
-//     }
-// }
-
-// output = ''
-// guessCounter++
-// }

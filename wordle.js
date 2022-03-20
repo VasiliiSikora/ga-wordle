@@ -124,8 +124,24 @@ enterButton.addEventListener('click', function() {
         } else {
             kids[i].style.backgroundColor = 'grey'
         }
+        kids[i].style.color = 'white'
 
     }
+    for (let i in randomAnswer) {
+        for (let j=0; j<buttons.length; j++) {
+
+            if (buttons[j].innerText.toUpperCase() == output[i]) {
+                if (buttons[j].style.backgroundColor == 'green') {
+                    
+                } else {
+                    buttons[j].style.backgroundColor = kids[i].style.backgroundColor
+                }
+
+            }     
+        }
+    }
+
+}
 //Adding wind/loss conditions
 let winChecker = 0
     setTimeout(function () {
@@ -151,7 +167,7 @@ let winChecker = 0
 
 }
 
-})
+)
 
 //Below is the code for the keyboard functionality
 

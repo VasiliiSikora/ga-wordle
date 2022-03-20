@@ -41,7 +41,8 @@ const validWords=["cigar","rebut","sissy","humph","awake","blush","focal","evade
 
 //This code randomly chooses a word to be the answer
 let words = validWords
-let randomAnswer = words[Math.floor(Math.random() * words.length)];
+// let randomAnswer = words[Math.floor(Math.random() * words.length)];
+let randomAnswer = 'easts';
 console.log(randomAnswer)
 
 
@@ -78,9 +79,11 @@ enterButton.addEventListener('click', function() { //Will need to add to HTML (k
             if (output[i] == randomAnswer[i]) {
                 <change to green>
                 output2[i] == ""
+    ***Realised need tomake new array since greenCheck immutable***
             } else {
                 continue <- not needed?
             }
+
         Second Loop - Check remaining letters (output2) for Yellow or Grey
             Check output2[i] against randomAnswer[i]
             if (output2[i] == "") {
@@ -90,32 +93,38 @@ enterButton.addEventListener('click', function() { //Will need to add to HTML (k
             } else {
                 <change to grey>
             }
-
-
     */
+   let greenCheck = output.slice()
+   let colourCheck = []
+   let answerCheck = []
 
-    for (let i in output) {
+   // First Loop, output2 has been changed to greenCheck
+    randomAnswer = randomAnswer.toUpperCase()
+    for (let i in greenCheck) {
         kids[i].innerText = output[i]
-        randomAnswer = randomAnswer.toUpperCase()
-        if (randomAnswer.includes(output[i])) {
-            console.log(i)
-            if (output[i] == randomAnswer[i]) {
-                kids[i].style.backgroundColor = 'green'
-            } else {
-                kids[i].style.backgroundColor = 'gold'
-            }
-            
+        if (greenCheck[i] == randomAnswer[i].toUpperCase()) {
+            kids[i].style.backgroundColor = 'green'
+            colourCheck[i] = ""
+            answerCheck[i] = ""
+        } else {
+            colourCheck[i] = greenCheck[i]
+            answerCheck[i] = randomAnswer[i]
+        }
+    }
+
+    let remainingAnswer = answerCheck.join('') //This allows us to check remaining letters that havent turned green so that repeat letters in the guess dont go yellow unless they are repeated in the answer somewhere else. (e.g. guessing EATER for answer EASTS will turn first E green but second E grey)
+
+
+    //Second Loop
+    for (let i in colourCheck) {
+        if (colourCheck[i] == "") {
+            continue
+        } else if ((remainingAnswer.includes(colourCheck[i]))) {
+            kids[i].style.backgroundColor = 'gold'
         } else {
             kids[i].style.backgroundColor = 'grey'
         }
-        kids[i].style.color = 'white'
-        for (let j=0; j<buttons.length; j++) {
 
-            if (buttons[j].innerText.toUpperCase() == output[i]) {
-
-                buttons[j].style.backgroundColor = kids[i].style.backgroundColor
-            }     
-        }
     }
 
     output = ''
@@ -134,17 +143,15 @@ for (let keyElement of keys) {
 
     keyElement.addEventListener('click', function() {
         let kids = guesses[guessCounter].children
-        if (output.length < 5) {
+        if (output.length < 6) { //changes <5 to <6 to make DEL work for 5 letters
             switch (key) {
                 case '␡':
                     output = output.slice(0, output.length-1);
-                    console.log(output)
                     if (output=="") {kids[0].innerText=""}
                     else {
                         for (let i=0; i<output.length; i++) {
                             output = output.toUpperCase();
                             kids[i].innerText = output[i]
-                            console.log(kids[i].innerText)
                             kids[i+1].innerText=""
                         }
                     }
@@ -211,3 +218,31 @@ for (let keyElement of keys) {
 //     output = ''
 //     guessCounter++
 // })
+
+// for (let i in output) {
+//     kids[i].innerText = output[i]
+//     randomAnswer = randomAnswer.toUpperCase()
+//     if (randomAnswer.includes(output[i])) {
+//         console.log(i)
+//         if (output[i] == randomAnswer[i]) {
+//             kids[i].style.backgroundColor = 'green'
+//         } else {
+//             kids[i].style.backgroundColor = 'gold'
+//         }
+        
+//     } else {
+//         kids[i].style.backgroundColor = 'grey'
+//     }
+//     kids[i].style.color = 'white'
+//     for (let j=0; j<buttons.length; j++) {
+
+//         if (buttons[j].innerText.toUpperCase() == output[i]) {
+
+//             buttons[j].style.backgroundColor = kids[i].style.backgroundColor
+//         }     
+//     }
+// }
+
+// output = ''
+// guessCounter++
+// }

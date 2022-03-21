@@ -94,9 +94,9 @@ enterButton.addEventListener('click', function() {
                 <change to grey>
             }
     */
-   let greenCheck = output.slice()
-   let colourCheck = []
-   let answerCheck = []
+   let greenCheck = output.slice() //This is now the users guess
+   let colourCheck = [] //This will store remaining letters that arent green
+   let answerCheck = [] //This stores the remaining letters in the answer that arent green yet that need to be checked for yellows
 
    // First Loop, output2 has been changed to greenCheck
     randomAnswer = randomAnswer.toUpperCase()
@@ -112,8 +112,8 @@ enterButton.addEventListener('click', function() {
         }
     }
 
-    let remainingAnswer = answerCheck.join('') //This allows us to check remaining letters that havent turned green so that repeat letters in the guess dont go yellow unless they are repeated in the answer somewhere else. (e.g. guessing EATER for answer EASTS will turn first E green but second E grey)
-
+    let remainingAnswer = answerCheck.slice() //This allows us to check remaining letters that havent turned green so that repeat letters in the guess dont go yellow unless they are repeated in the answer somewhere else. (e.g. guessing EATER for answer EASTS will turn first E green but second E grey)
+    // let orangeCheck = answerCheck.slice()
 
     //Second Loop
     for (let i in colourCheck) {
@@ -121,26 +121,24 @@ enterButton.addEventListener('click', function() {
             continue
         } else if ((remainingAnswer.includes(colourCheck[i]))) {
             kids[i].style.backgroundColor = 'gold'
+            //The next two lines deal with guesses that have 2 of the same letters that are only included once in the Answer and both the letters in the guess are not in the right position (i.e. not green) e.g. Answer = space, Guess = lasso, without this code both s' in the guess would turn orange!
+            remainingAnswer[remainingAnswer.indexOf(colourCheck[i])] = ""
+            console.log(remainingAnswer)
         } else {
             kids[i].style.backgroundColor = 'grey'
         }
         kids[i].style.color = 'white'
-
     }
     for (let i in randomAnswer) {
         for (let j=0; j<buttons.length; j++) {
-
             if (buttons[j].innerText.toUpperCase() == output[i]) {
-                if (buttons[j].style.backgroundColor == 'green') {
-                    
+                if (buttons[j].style.backgroundColor == 'green') {         
                 } else {
                     buttons[j].style.backgroundColor = kids[i].style.backgroundColor
                 }
-
             }     
         }
     }
-
 }
 //Adding wind/loss conditions
 let winChecker = 0
@@ -149,13 +147,11 @@ let winChecker = 0
             if (kids[i].style.backgroundColor == 'green') {
                 winChecker++
             }
-
         }
         if (winChecker == 5) {
             alert(`You win! ${randomAnswer.toUpperCase()} was the word!`)
             return
-        }
-    
+        } 
         output = ''
         guessCounter++
         if (guessCounter == 6) {
@@ -163,11 +159,7 @@ let winChecker = 0
             return
         }
     }, 1000)
-
-
-}
-
-)
+})
 
 //Below is the code for the keyboard functionality
 
@@ -186,25 +178,27 @@ for (let keyElement of keys) {
                     if (output=="") {kids[0].innerText=""}
                     else {
                         for (let i=0; i<output.length; i++) {
+                            console.log('hey')
                             output = output.toUpperCase();
                             kids[i].innerText = output[i]
                             kids[i+1].innerText=""
                         }
                     }
-
                     break;
                 case 'ENTER':
                     break;
-
                 default:
+                    if (output.length == 5) {
+                        break
+                    }
                     output += key;
             }
-
             for (let i=0; i<output.length; i++) {
                 output = output.toUpperCase();
                 kids[i].innerText = output[i]
             }
-        }
+        } 
+
+        
     });
 }
-

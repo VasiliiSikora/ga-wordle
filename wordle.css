@@ -144,3 +144,25 @@ header {
     left:50%;
     transform: translateX(-50%);
   }
+
+  p, img.reset {
+      text-align: center;
+      margin: 5px auto;
+      z-index: 100;
+  }
+
+  img.reset {
+      width: 50px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 0;
+      margin-top: -2px;
+  }
+
+  #startGame{
+    position: relative;
+    text-align: center;
+    color: rgb(0, 0, 0);
+  }

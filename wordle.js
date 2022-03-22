@@ -50,6 +50,7 @@ let buttons = document.getElementsByClassName('key')
 let output = '';
 let end = false;
 let streakCounter = 0;
+let currentGame = document.querySelector('.active')
 
 let guessCounter = 0 //Start the guess counter so that we can move down the rows as new guesses are submitted
 enterButton.addEventListener('click', function() { 
@@ -139,80 +140,67 @@ enterButton.addEventListener('click', function() {
 let winChecker = 0
 //Following Code is for Base Wordle
 //Adding win/loss conditions
-let currentGame = document.querySelector('.active')
+
 if (currentGame.innerText == 'Wordle') {
-    
+        //Timeout function used to allow transition of colours before ending
+        setTimeout(function () {
+            for (let i in randomAnswer) {
+                if (kids[i].style.backgroundColor == 'green') {
+                    winChecker++
+                }
+            }
+            if (winChecker == 5) {
+                //Use window.confirm to allow user to continue streak or restart streak
+                const continueButton = window.confirm("Continue Streak?")
+                if (continueButton) {
+                    streakCounter++;
+                    resetGrid();
+                } else {
+                    streakCounter=0;
+                    resetGrid();
+                }
+                // alert(`You win! ${randomAnswer.toUpperCase()} was the word!`)
+                // streakCounter++ //Add one to the streak if you win
+                // resetGrid() //Reset the grid colouring for another round
+                return
+            } 
+            output = ''
+            guessCounter++
+            if (guessCounter == 6) {
+                alert(`You LOSE! ${randomAnswer.toUpperCase()} was the word!`)
+                streakCounter = 0; //Reset the streak if you lose
+                resetGrid() //Reset the grid colouring for another round
+                return
+            }
+        }, 260)
+    } else if (currentGame.innerText == 'Speedle') {
+        let currentStreak = document.getElementById('streak');
+        setTimeout(function () {
+            for (let i in randomAnswer) {
+                if (kids[i].style.backgroundColor == 'green') {
+                    winChecker++
+                }
+            }
+            if (winChecker == 5) {
+                let winSound = new Audio("lightning.wav");
+                winSound.play()
+                streakCounter++ //Add one to the streak if you win
+                currentStreak.innerText = `Current Streak: ${streakCounter}`
+                resetGrid() //Reset the grid colouring for another round
+                return
+            } 
+            output = ''
+            guessCounter++
+            if (guessCounter == 6) {
+                streakCounter = 0; //Reset the streak if you lose
+                resetGrid() //Reset the grid colouring for another round
+                return
+            }
+        }, 260)
+    }
 }
 
-    //Timeout function used to allow transition of colours before ending
-    setTimeout(function () {
-        for (let i in randomAnswer) {
-            if (kids[i].style.backgroundColor == 'green') {
-                winChecker++
-            }
-        }
-        if (winChecker == 5) {
-            //Use window.confirm to allow user to continue streak or restart streak
-            const continueButton = window.confirm("Continue Streak?")
-            if (continueButton) {
-                streakCounter++;
-                resetGrid();
-            } else {
-                streakCounter=0;
-                resetGrid();
-            }
-            // alert(`You win! ${randomAnswer.toUpperCase()} was the word!`)
-            // streakCounter++ //Add one to the streak if you win
-            // resetGrid() //Reset the grid colouring for another round
-            return
-        } 
-        output = ''
-        guessCounter++
-        if (guessCounter == 6) {
-            alert(`You LOSE! ${randomAnswer.toUpperCase()} was the word!`)
-            streakCounter = 0; //Reset the streak if you lose
-            resetGrid() //Reset the grid colouring for another round
-            return
-        }
-    }, 260)
-})
-
-//Following Code is for Speedle
-// let winChecker = 0
-//     //Timeout function used to allow transition of colours before ending
-//     setTimeout(function () {
-//         for (let i in randomAnswer) {
-//             if (kids[i].style.backgroundColor == 'green') {
-//                 winChecker++
-//             }
-//         }
-//         if (winChecker == 5) {
-//             //Use window.confirm to allow user to continue streak or restart streak
-//             const continueButton = window.confirm("Continue Streak?")
-//             if (continueButton) {
-//                 streakCounter++;
-//                 resetGrid();
-//             } else {
-//                 streakCounter=0;
-//                 resetGrid();
-//             }
-//             // alert(`You win! ${randomAnswer.toUpperCase()} was the word!`)
-//             // streakCounter++ //Add one to the streak if you win
-//             // resetGrid() //Reset the grid colouring for another round
-//             return
-//         } 
-//         output = ''
-//         guessCounter++
-//         if (guessCounter == 6) {
-//             alert(`You LOSE! ${randomAnswer.toUpperCase()} was the word!`)
-//             streakCounter = 0; //Reset the streak if you lose
-//             resetGrid() //Reset the grid colouring for another round
-//             return
-//         }
-//     }, 260)
-// })
-
-
+)
 
 //Below is the code for the keyboard functionality
 let keys = document.getElementsByClassName('key');
@@ -288,6 +276,9 @@ function resetGrid() {
     for (let j=0; j<buttons.length; j++) {
         buttons[j].style.backgroundColor = '#1d1d1d'         
     }
+    //Change answer word!
+    randomAnswer = words[Math.floor(Math.random() * words.length)];
+    output = ""
     guessCounter = 0
 }
 
@@ -301,4 +292,39 @@ function showMenu() {
     }
   }
 
+//Add functionality to the countdown timer
+if (currentGame.innerText == 'Speedle') { //Check that the game is speedle
+    // Set the date we're counting down to
+    let countDown = document.getElementById('countdown');
+    //Pull the current date and set 90s ahead to give countdown something to reduce
+    let now = new Date()
+    let time = now.getTime();
+    let future = time + 90000;
+    function startTimer() {
+        now = new Date()
+        time = now.getTime();
+        future = time + 90000;
+    }
+
+    function updateTimer() {
+        let newNow = new Date();
+        
+        let remainingTime = future - newNow;
+        //Set conditions for timeout
+        if (Math.ceil(remainingTime/1000) == 0) {
+            countDown.innerText = 'OUTTA TIME'
+            alert(`Your Speedle streak was ${streakCounter}`)
+        } else {
+            //Countdown, setTimeout as a recursive function to continuously redisplay number
+            countDown.innerText = `Remaining Time: ${Math.ceil(remainingTime/1000)}s`
+            setTimeout(updateTimer,1000)
+            return (remainingTime/1000);
+        }
+    }
+        // updateTimer() //Run function to begin countdown
+        
+
+    
+
+}
 

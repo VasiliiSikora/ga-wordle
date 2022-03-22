@@ -136,8 +136,14 @@ enterButton.addEventListener('click', function() {
         }
     }
 }
-//Adding win/loss conditions
 let winChecker = 0
+//Following Code is for Base Wordle
+//Adding win/loss conditions
+let currentGame = document.querySelector('.active')
+if (currentGame.innerText == 'Wordle') {
+    
+}
+
     //Timeout function used to allow transition of colours before ending
     setTimeout(function () {
         for (let i in randomAnswer) {
@@ -146,9 +152,18 @@ let winChecker = 0
             }
         }
         if (winChecker == 5) {
-            alert(`You win! ${randomAnswer.toUpperCase()} was the word!`)
-            streakCounter++ //Add one to the streak if you win
-            resetGrid() //Reset the grid colouring for another round
+            //Use window.confirm to allow user to continue streak or restart streak
+            const continueButton = window.confirm("Continue Streak?")
+            if (continueButton) {
+                streakCounter++;
+                resetGrid();
+            } else {
+                streakCounter=0;
+                resetGrid();
+            }
+            // alert(`You win! ${randomAnswer.toUpperCase()} was the word!`)
+            // streakCounter++ //Add one to the streak if you win
+            // resetGrid() //Reset the grid colouring for another round
             return
         } 
         output = ''
@@ -161,6 +176,43 @@ let winChecker = 0
         }
     }, 260)
 })
+
+//Following Code is for Speedle
+// let winChecker = 0
+//     //Timeout function used to allow transition of colours before ending
+//     setTimeout(function () {
+//         for (let i in randomAnswer) {
+//             if (kids[i].style.backgroundColor == 'green') {
+//                 winChecker++
+//             }
+//         }
+//         if (winChecker == 5) {
+//             //Use window.confirm to allow user to continue streak or restart streak
+//             const continueButton = window.confirm("Continue Streak?")
+//             if (continueButton) {
+//                 streakCounter++;
+//                 resetGrid();
+//             } else {
+//                 streakCounter=0;
+//                 resetGrid();
+//             }
+//             // alert(`You win! ${randomAnswer.toUpperCase()} was the word!`)
+//             // streakCounter++ //Add one to the streak if you win
+//             // resetGrid() //Reset the grid colouring for another round
+//             return
+//         } 
+//         output = ''
+//         guessCounter++
+//         if (guessCounter == 6) {
+//             alert(`You LOSE! ${randomAnswer.toUpperCase()} was the word!`)
+//             streakCounter = 0; //Reset the streak if you lose
+//             resetGrid() //Reset the grid colouring for another round
+//             return
+//         }
+//     }, 260)
+// })
+
+
 
 //Below is the code for the keyboard functionality
 let keys = document.getElementsByClassName('key');
@@ -248,3 +300,5 @@ function showMenu() {
       x.style.display = "flex";
     }
   }
+
+

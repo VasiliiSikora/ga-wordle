@@ -49,6 +49,7 @@ let enterButton = document.getElementById('enter')
 let buttons = document.getElementsByClassName('key')
 let output = '';
 let end = false;
+let streakCounter = 0;
 
 let guessCounter = 0 //Start the guess counter so that we can move down the rows as new guesses are submitted
 enterButton.addEventListener('click', function() { 
@@ -146,12 +147,16 @@ let winChecker = 0
         }
         if (winChecker == 5) {
             alert(`You win! ${randomAnswer.toUpperCase()} was the word!`)
+            streakCounter++ //Add one to the streak if you win
+            resetGrid() //Reset the grid colouring for another round
             return
         } 
         output = ''
         guessCounter++
         if (guessCounter == 6) {
             alert(`You LOSE! ${randomAnswer.toUpperCase()} was the word!`)
+            streakCounter = 0; //Reset the streak if you lose
+            resetGrid() //Reset the grid colouring for another round
             return
         }
     }, 260)
@@ -233,3 +238,13 @@ function resetGrid() {
     }
     guessCounter = 0
 }
+
+//This is the program to show the menu to select other modes of gameplay this is taken from: https://www.w3schools.com/howto/howto_js_mobile_navbar.asp
+function showMenu() {
+    let x = document.getElementById("menu");
+    if (x.style.display === "flex") {
+      x.style.display = "none";
+    } else {
+      x.style.display = "flex";
+    }
+  }

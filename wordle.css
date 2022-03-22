@@ -17,17 +17,24 @@
     display: flex;
     flex-direction: column;
     gap: 5px;
+    margin: 10px 0;
 }
 body div {
     margin: 0 auto;
 }
-h1 {
+header {
     text-align: center;
     border-bottom: 0.5px solid gray;
     padding-bottom: 5px;
     margin: 15px;
-}
 
+}
+.active {
+    text-decoration: none;
+    color: black;
+    font-size: 2em;
+    font-weight: bolder;
+}
 
 /* Keyboard CSS Below Here */
 .keyboard{
@@ -74,3 +81,66 @@ body {
 #enter {
     width: 80px;
 }
+
+/* menu styling */
+/* Referenced This: https://stackoverflow.com/questions/33444666/how-to-center-align-one-flex-item-and-right-align-another-using-flexbox */
+header {
+    overflow: hidden;
+    background-color: rgb(255, 255, 255);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
+  }
+  
+  /* Hide the links inside the navigation menu (except for logo/home) */
+  #menu {
+    display: none;
+  }
+  
+  header a, div a {
+    color: black;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+    display: inline-block;
+  }
+  div a {
+      margin-top: -15px;
+      transition-duration: 0.25s;
+  }
+  div a:hover {
+    background: rgb(204, 204, 204);
+  }
+  #clock, #spark, #word {
+      /* display: none; */
+      width: 17px;
+      height: auto;
+      display: inline-block;
+      padding-right: 5px;
+  }
+  #chronol, #Speedle, #wordle{
+      display: flex;
+      align-items: center;
+  }
+
+  /* Style the hamburger menu */
+  .icon {
+    background: rgb(255, 255, 255);
+    flex: 0 1 auto;
+    margin-left: auto;
+    transition-duration: 0.25s;
+  }
+
+  .icon:hover {
+    background: rgb(204, 204, 204);
+
+  }
+
+  .active {
+    color: rgb(0, 0, 0);
+    flex: 0 1 auto;
+    position:absolute;
+    left:50%;
+    transform: translateX(-50%);
+  }

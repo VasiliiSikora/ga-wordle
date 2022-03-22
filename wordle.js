@@ -135,7 +135,7 @@ enterButton.addEventListener('click', function() {
         }
     }
 }
-//Adding wind/loss conditions
+//Adding win/loss conditions
 let winChecker = 0
     //Timeout function used to allow transition of colours before ending
     setTimeout(function () {
@@ -154,7 +154,7 @@ let winChecker = 0
             alert(`You LOSE! ${randomAnswer.toUpperCase()} was the word!`)
             return
         }
-    }, 1000)
+    }, 260)
 })
 
 //Below is the code for the keyboard functionality
@@ -200,7 +200,6 @@ for (let keyElement of keys) {
 document.addEventListener('keyup', function(e) {
     let keys = document.getElementsByClassName('key');
     let del = document.getElementById('del')
-    console.log(e.key)
     for (let keyElement of keys) {
         if (e.key == keyElement.textContent) {
             let clickEvent = new Event('click')
@@ -214,3 +213,23 @@ document.addEventListener('keyup', function(e) {
     }
 
 })
+
+//Below is the code for a winstreak counter
+
+
+
+//Below is the function code that will reset the board after a win
+//Need to use this with a confirm box
+function resetGrid() {
+    let parents = document.getElementsByClassName("letter")
+    for (let i=0; i<30 ; i++) {
+        parents[i].style.backgroundColor = "white"
+        parents[i].innerText = ""
+        parents[i].style.color = "black"
+    }
+    let buttons = document.getElementsByClassName('key')
+    for (let j=0; j<buttons.length; j++) {
+        buttons[j].style.backgroundColor = '#1d1d1d'         
+    }
+    guessCounter = 0
+}

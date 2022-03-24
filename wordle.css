@@ -126,7 +126,6 @@ header {
 
   /* Style the hamburger menu */
   .icon {
-    background: rgb(255, 255, 255);
     flex: 0 1 auto;
     margin-left: auto;
     transition-duration: 0.25s;
@@ -198,9 +197,6 @@ header {
       min-width: 375px;
   }
 
- /* .letter {
-     background-color: white;
- }
- body {
-     background-image: url(matrix.gif);
- } */
+/* header {
+    background-image: url(matrix.gif);
+} */

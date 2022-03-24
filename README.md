@@ -40,16 +40,16 @@ In this game mode players have 3 minutes to solve as many Wordles as possible wi
 ---
 Currently a work in progress, Cryptol looks to redefine the Wordle-type gamespace. 
 
-Cryptol is a visionary new game mode that has the player decrypt a series of 3 five letter words called a Cryptol.
+Cryptol is a visionary new game mode that has the player decrypt an 8 letter word called a Cryptol.
 
 ### How to Play
-- At the start of each game 3 five letter words are chosen at random and encrypted using a randomly scrambled alphabet. Each round (of 6 attempts) the player must guess 2 five letter words of their own in an attempt to crack the code. 
+- At the start of each game an 8 letter word is chosen at random and encrypted using a randomly scrambled alphabet. Each round (of 6 attempts) the player must guess the cryptol in an attempt to crack the code. 
 - To aid the player the system provides a key which gives the player insight into up to 3 of the decrypted letters.
 
 **For Example**: the key shows "GRE = LJS", the player now knows that G=L, R=J, E=S. 
 
 - To make the process simpler, the game takes the decoded letters and changes all encoded letters in the Cryptol, changes them to their real letters, and turns the tiles green. This way the player knows these letters are "solved"
-- If the player guesses the one of the two words correctly the same process occurs, in that, the letters in the correct spot turn green
+- If the player guesses the cryptol correctly the game ends
 - After each round of unsuccessful guesses the a letter in the encrypted answer is revealed
 
 

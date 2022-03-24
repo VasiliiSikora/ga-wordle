@@ -397,7 +397,7 @@ document.addEventListener('keyup', function(e) {
 function resetGrid() {
     let parents = document.getElementsByClassName("letter")
     for (let i=0; i<70 ; i++) {
-        if (!(currentGame.innerText == 'Chronol') && (i==30)) {
+        if (!(currentGame.innerText == 'Cryptol') && (i==30)) {
             break
         } else {
             parents[i].style.backgroundColor = "white"

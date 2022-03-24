@@ -192,12 +192,11 @@ if (currentGame.innerText == 'Wordle') {
             output = ''
             guessCounter++
             if (guessCounter == 6) {
-                streakCounter = 0; //Reset the streak if you lose
                 resetGrid() //Reset the grid colouring for another round
                 return
             }
         }, 260)
-    }
+    } 
 }
 
 )
@@ -299,11 +298,14 @@ if (currentGame.innerText == 'Speedle') { //Check that the game is speedle
     //Pull the current date and set 90s ahead to give countdown something to reduce
     let now = new Date()
     let time = now.getTime();
-    let future = time + 90000;
+    let future = time + 180000;
     function startTimer() {
         now = new Date()
         time = now.getTime();
-        future = time + 90000;
+        future = time + 180000;
+        streakCounter = 0;
+        let currentStreak = document.getElementById('streak');
+        currentStreak.innerText = `Current Streak: ${streakCounter}`
     }
 
     function updateTimer() {
@@ -313,7 +315,11 @@ if (currentGame.innerText == 'Speedle') { //Check that the game is speedle
         //Set conditions for timeout
         if (Math.ceil(remainingTime/1000) == 0) {
             countDown.innerText = 'OUTTA TIME'
+            
+            let currentStreak = document.getElementById('streak');
+            currentStreak.innerText = `Current Streak: ${streakCounter}`
             alert(`Your Speedle streak was ${streakCounter}`)
+            streakCounter = 0;
         } else {
             //Countdown, setTimeout as a recursive function to continuously redisplay number
             countDown.innerText = `Remaining Time: ${Math.ceil(remainingTime/1000)}s`

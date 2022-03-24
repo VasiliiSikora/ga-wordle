@@ -5,12 +5,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script defer src="wordle.js"></script>
+    <script defer src="wordle copy.js"></script>
     <link rel="stylesheet" href="wordle.css">
 </head>
-<body>
+<body id="cryptolBody">
     <header> 
-        <a href="#home" class="active">Chronol</a>
+        <a href="#home" class="active" id="cryptol">Cryptol</a>
         <a href="#Chronol" class="icon" onclick="showMenu()">
             &#9776; Modes
         </a>
@@ -25,13 +25,30 @@
             Wordle
         </a>
     </div>
-
+    <p class="hint"></p>
+    <div id="decoder">
+        <div class="letter w1"></div>
+        <div class="letter w1"></div>
+        <div class="letter w1"></div>
+        <div class="letter w1"></div>
+        <div class="letter w1 end"></div>
+        <div class="letter w1"></div>
+        <div class="letter w1"></div>
+        <div class="letter w1"></div>
+        <div class="letter w1"></div>
+        <div class="letter w1"></div>
+    </div>
     <div class="guesses">
         <div class="guess">
             <div class="letter w1"></div>
             <div class="letter w1"></div>
             <div class="letter w1"></div>
             <div class="letter w1"></div>
+            <div class="letter w1 end"></div>
+            <div class="letter w1"></div>
+            <div class="letter w1"></div>
+            <div class="letter w1"></div>
+            <div class="letter w1"></div>
             <div class="letter w1"></div>
         </div>
         <div class="guess">
@@ -39,6 +56,11 @@
             <div class="letter w2"></div>
             <div class="letter w2"></div>
             <div class="letter w2"></div>
+            <div class="letter w2 end"></div>
+            <div class="letter w2"></div>
+            <div class="letter w2"></div>
+            <div class="letter w2"></div>
+            <div class="letter w2"></div>
             <div class="letter w2"></div>
         </div>
         <div class="guess">
@@ -46,6 +68,11 @@
             <div class="letter w3"></div>
             <div class="letter w3"></div>
             <div class="letter w3"></div>
+            <div class="letter w3 end"></div>
+            <div class="letter w3"></div>
+            <div class="letter w3"></div>
+            <div class="letter w3"></div>
+            <div class="letter w3"></div>
             <div class="letter w3"></div>
         </div>
         <div class="guess">
@@ -53,6 +80,11 @@
             <div class="letter w4"></div>
             <div class="letter w4"></div>
             <div class="letter w4"></div>
+            <div class="letter w4 end"></div>
+            <div class="letter w4"></div>
+            <div class="letter w4"></div>
+            <div class="letter w4"></div>
+            <div class="letter w4"></div>
             <div class="letter w4"></div>
         </div>
         <div class="guess">
@@ -60,9 +92,19 @@
             <div class="letter w5"></div>
             <div class="letter w5"></div>
             <div class="letter w5"></div>
+            <div class="letter w5 end"></div>
+            <div class="letter w5"></div>
+            <div class="letter w5"></div>
+            <div class="letter w5"></div>
+            <div class="letter w5"></div>
             <div class="letter w5"></div>
         </div>
         <div class="guess">
+            <div class="letter w6"></div>
+            <div class="letter w6"></div>
+            <div class="letter w6"></div>
+            <div class="letter w6"></div>
+            <div class="letter w6 end"></div>
             <div class="letter w6"></div>
             <div class="letter w6"></div>
             <div class="letter w6"></div>

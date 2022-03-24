@@ -173,6 +173,7 @@ if (currentGame.innerText == 'Wordle') {
                 return
             }
         }, 260)
+        
     } else if (currentGame.innerText == 'Speedle') {
         let currentStreak = document.getElementById('streak');
         setTimeout(function () {

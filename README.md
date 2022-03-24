@@ -52,6 +52,19 @@ Cryptol is a visionary new game mode that has the player decrypt an 8 letter wor
 - If the player guesses the cryptol correctly the game ends
 - After each round of unsuccessful guesses the a letter in the encrypted answer is revealed
 
+## Cryptol 2.0 *(Previously Chronol)*
+---
+Currently a work in progress, Cryptol 2.0 builds on the success of Cryptol by offering the same experience but where the user guesses 2 five letter words instead of 1 eight letter word.
+
+### How to Play
+- At the start of each game 2 five letter words are chosen at random and encrypted using a randomly scrambled alphabet. Each round (of 6 attempts) the player must guess the 2 five letter words in an attempt to crack the code. 
+- To aid the player the system provides a key which gives the player insight into up to 3 of the decrypted letters.
+
+**For Example**: the key shows "GRE = LJS", the player now knows that G=L, R=J, E=S. 
+
+- To make the process simpler, the game takes the decoded letters and changes all encoded letters in the the five letter words if guessed correctly, changes them to their real letters, and turns the tiles green. This way the player knows these letters are "solved"
+- If the player guesses both five letter words correctly the game ends
+- After each round of unsuccessful guesses the a letter in the encrypted answer is revealed
 
 
 

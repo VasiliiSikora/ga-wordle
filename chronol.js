@@ -339,7 +339,7 @@ for (let keyElement of keys) {
     let key = keyElement.textContent;
     keyElement.addEventListener('click', function() {
         let kids = guesses[guessCounter].children
-        if (output.length < 11) { //changed <6 to <11 to make DEL work for chronol
+        if (output.length < 9) { //changed <6 to <9 to make DEL work for chronol
             switch (key) {
                 case '␡':
                     output = output.slice(0, output.length-1);
@@ -356,7 +356,7 @@ for (let keyElement of keys) {
                     break;
                 default:
                     //This if statement stops user from entering more letters after 10. 
-                    if (output.length == 10) {
+                    if (output.length == 8) {
                         break
                     }
                     output += key;

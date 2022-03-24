@@ -36,7 +36,7 @@ In this game mode players have 3 minutes to solve as many Wordles as possible wi
 
 **NOTE**: Win streak will reset if the start⚡ reset button is pressed!
 
-## Cryptol
+## Cryptol *(Previously Chronol)*
 ---
 Currently a work in progress, Cryptol looks to redefine the Wordle-type gamespace. 
 

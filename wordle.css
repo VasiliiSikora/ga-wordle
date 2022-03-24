@@ -172,3 +172,10 @@ header {
   .end {
       margin-right: 30px;
   }
+  #decoder {
+      margin: 20px auto;;
+  }
+  .hint {
+    font-family: monospace;
+    font-size: 18px;
+  }

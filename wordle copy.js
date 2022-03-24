@@ -61,8 +61,8 @@ let decodedWord = words[Math.floor(Math.random() * words.length)];
 
 let alphabet = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
 
-//encoder
-function encoder(string) {
+//encoder to create jumbled alphabet
+function encoderKEY() {
     let deCode = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
     let enCode = []
     let enCodedWord = ''
@@ -71,36 +71,66 @@ function encoder(string) {
         deCode.splice(deCode.indexOf(x), 1)
         enCode[i] = x
     }
+    return enCode
+}
+let encoderArray = encoderKEY();
+console.log(encoderArray)
+
+//encoder to encode a word with a jumbled alphabet
+function encoderWORD(string, array) {
     let string2array = string.split('')
-    let deCode2 = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
+    let enCodedWord = ''
+    let deCode = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
     for (let letter in string2array) {
         let i = string2array[letter]
         let caps = i.toUpperCase()
-        let deCodeCombine = deCode2.join('')
-
-        let index = deCode2.indexOf(caps);
-
-        let newLetter = enCode[index];
+        let deCodeCombine = deCode.join('')
+    
+        let index = deCode.indexOf(caps);
+    
+        let newLetter = array[index];
         enCodedWord = enCodedWord + newLetter;
-
+    
     }
-    return [enCodedWord, enCode]
+    return enCodedWord
 }
+
 
 let placeholder = chronolRandomAnswer1+chronolRandomAnswer2;
 
-let [wordToEncode, key] = encoder(placeholder)
-console.log(wordToEncode)
+let wordToEncode = encoderWORD(placeholder, encoderArray)
+console.log(placeholder)
 
 let codedAnswer = document.getElementById('decoder').children;
 console.log(codedAnswer)
 for (let i in codedAnswer) {
     codedAnswer[i].innerText = wordToEncode[i]
-    // console.log(wordToEncode[i])
 }
+
+let keyWord = words[Math.floor(Math.random() * words.length)];
+let keyPlacer = document.querySelector('.hint')
+let encodedKeyWord = encoderWORD(keyWord, encoderArray)
+keyPlacer.innerText = `${keyWord.toUpperCase()} = ${encodedKeyWord}`
 
 
 //CHRONOL SPECIFIC
+let decodedLetters = [] //This will store decoded letters
+let codedLetters = [] //This stores corresponding coded letters
+for (let i in keyWord) {
+    decodedLetters.push(keyWord[i].toUpperCase());
+    codedLetters.push(encodedKeyWord[i])
+
+}
+console.log(wordToEncode)
+function answerUpdater() {
+    for (let i in placeholder) {
+        if (codedLetters.includes(codedAnswer[i].innerText)) {
+            codedAnswer[i].innerText = placeholder[i].toUpperCase()
+            codedAnswer[i].style.backgroundColor = 'green'
+        }
+    }
+}
+answerUpdater()
 
 let guessCounter = 0 //Start the guess counter so that we can move down the rows as new guesses are submitted
 enterButton.addEventListener('click', function() { 
@@ -115,69 +145,54 @@ enterButton.addEventListener('click', function() {
         }
         output=""
         return 
-    } else {
+    } else if (output.length < 10) {
+        alert('Not enough letters!')
+        for (let i=0; i<output.length; i++) {
+            kids[i].innerText=""
+        }
+        output=""
+        return 
+    }
+    else {
     //check letter placement and change colours
 
-    /*
-        Pseudo-Code for guesses with multiple same letters
-            Answer: randomAnswer
-            Guess: output
-            Guess with greens removed = output2 = output
-        First Loop - Check (output) for Green Letters
-            Check output[i] against randomAnswer[i]
-            if (output[i] == randomAnswer[i]) {
-                <change to green>
-                output2[i] == ""
-    ***Realised need tomake new array since greenCheck immutable***
-            } else {
-                continue <- not needed?
-            }
 
-        Second Loop - Check remaining letters (output2) for Yellow or Grey
-            Check output2[i] against randomAnswer[i]
-            if (output2[i] == "") {
-                continue
-            } else if (randomAnswer.includes(output2[i])) {
-                <change to yellow>
-            } else {
-                <change to grey>
-            }
-    */
    let greenCheck = output.slice() //This is now the users guess
-   let colourCheck = [] //This will store remaining letters that arent green
-   let answerCheck = [] //This stores the remaining letters in the answer that arent green yet that need to be checked for yellows
 
-   // First Loop: Check for green letters and remove them from the 'Check' arrays
+
     randomAnswer = placeholder.toUpperCase()
+    console.log(greenCheck, randomAnswer)
+
     for (let i in greenCheck) {
         kids[i].innerText = output[i]
-        if (greenCheck[i] == randomAnswer[i].toUpperCase()) {
+        if (greenCheck[i] == randomAnswer[i]) {
             kids[i].style.backgroundColor = 'green'
-            colourCheck[i] = ""
-            answerCheck[i] = ""
-        } else {
-            colourCheck[i] = greenCheck[i]
-            answerCheck[i] = randomAnswer[i]
-        }
+            //Add styling and reveal decoded letters in answer
+
+            codedAnswer[i].style.backgroundColor = 'green';
+            if (!decodedLetters.includes(randomAnswer[i])) {
+                codedLetters.push(codedAnswer[i].innerText);
+                decodedLetters.push(randomAnswer[i]);
+            }
+            codedAnswer[i].innerText = randomAnswer[i];
+
+
+        } 
     }
-
-    let remainingAnswer = answerCheck.slice() //This allows us to check remaining letters that havent turned green so that repeat letters in the guess dont go yellow unless they are repeated in the answer somewhere else. (e.g. guessing EATER for answer EASTS will turn first E green but second E grey)
-
-    //Second Loop: Check for orange letters and remove them from the 'Check' arrays before setting remaining letters grey
-    for (let i in colourCheck) {
-        if (colourCheck[i] == "") {
+    console.log(decodedLetters)
+    console.log(codedLetters)
+    //Reveal other coded letters that have been determined
+    for (let i in greenCheck) {
+        if (codedAnswer[i].style.backgroundColor == 'green') {
             continue
-        } else if ((remainingAnswer.includes(colourCheck[i]))) {
-            kids[i].style.backgroundColor = 'gold'
-            //The next two lines deal with guesses that have 2 of the same letters that are only included once in the Answer and both the letters in the guess are not in the right position (i.e. not green) e.g. Answer = space, Guess = lasso, without this code both s' in the guess would turn orange!
-            remainingAnswer[remainingAnswer.indexOf(colourCheck[i])] = ""
-            console.log(remainingAnswer)
-        } else {
-            kids[i].style.backgroundColor = 'grey'
+        } else if (codedLetters.includes(codedAnswer[i].innerText)) {
+            codedAnswer[i].innerText = decodedLetters[codedLetters.indexOf(codedAnswer.innerText)]
+            codedAnswer[i].style.backgroundColor = 'green';
         }
-        kids[i].style.color = 'white'
+        }
+
     }
-    //The following code changes the keyboard colours to the same as the guesses made this round. NOTE: This is permanent for the keyboard
+
     for (let i in randomAnswer) {
         for (let j=0; j<buttons.length; j++) {
             if (buttons[j].innerText.toUpperCase() == output[i]) {
@@ -188,7 +203,7 @@ enterButton.addEventListener('click', function() {
             }     
         }
     }
-}
+
 let winChecker = 0
 //Following Code is for Base Wordle
 //Adding win/loss conditions
@@ -255,9 +270,10 @@ if (currentGame.innerText == 'Wordle') {
             for (let i in randomAnswer) {
                 if (kids[i].style.backgroundColor == 'green') {
                     winChecker++
+
                 }
             }
-            if (winChecker == 5) {
+            if (winChecker == 10) {
                 //Use window.confirm to allow user to continue streak or restart streak
                 const continueButton = window.confirm("Continue Streak?")
                 if (continueButton) {
@@ -412,3 +428,31 @@ if (currentGame.innerText == 'Speedle') { //Check that the game is speedle
 
 }
 
+
+
+
+//Backup Encoder
+// function encoder(string) {
+//     let deCode = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
+//     let enCode = []
+//     let enCodedWord = ''
+//     for (let i = 0; i < 26; i++) {
+//         x = deCode[Math.floor(Math.random() * deCode.length)]
+//         deCode.splice(deCode.indexOf(x), 1)
+//         enCode[i] = x
+//     }
+//     let string2array = string.split('')
+//     let deCode2 = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
+//     for (let letter in string2array) {
+//         let i = string2array[letter]
+//         let caps = i.toUpperCase()
+//         let deCodeCombine = deCode2.join('')
+
+//         let index = deCode2.indexOf(caps);
+
+//         let newLetter = enCode[index];
+//         enCodedWord = enCodedWord + newLetter;
+
+//     }
+//     return [enCodedWord, enCode]
+// }

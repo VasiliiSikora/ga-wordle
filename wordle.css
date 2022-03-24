@@ -166,3 +166,9 @@ header {
     text-align: center;
     color: rgb(0, 0, 0);
   }
+
+
+  /* Chronol Copy Stuff */
+  .end {
+      margin-right: 30px;
+  }

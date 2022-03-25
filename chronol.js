@@ -7,7 +7,6 @@ const validWords=["absolute", "abstract", "academic", "accepted", "accident", "a
 let words = validWords
 let randomAnswer = words[Math.floor(Math.random() * words.length)];
 // let randomAnswer = 'easts';
-console.log(randomAnswer)
 
 let guesses = document.getElementsByClassName('guess');
 let enterButton = document.getElementById('enter')
@@ -65,7 +64,6 @@ let decodedLetters = [] //This will store decoded letters
 let codedLetters = [] //This stores corresponding coded letters
 
 function answerUpdater() {
-    console.log(codedLetters)
     for (let i in placeholder) {
         if (codedLetters.includes(codedAnswer[i].innerText)) {
             codedAnswer[i].innerText = placeholder[i].toUpperCase()
@@ -89,7 +87,6 @@ function resetGame() {
     console.log(placeholder)
 
     codedAnswer = document.getElementById('decoder').children;
-    console.log(codedAnswer)
     for (let i in codedAnswer) {
         codedAnswer[i].innerText = wordToEncode[i]
     }
@@ -120,7 +117,7 @@ resetGame()
 function keyboardCheck() {
     for (let i in placeholder) {
         for (let j=0; j<buttons.length; j++) {
-            console.log(codedAnswer[i].style.backgroundColor)
+            
             if ((codedAnswer[i].style.backgroundColor == 'green') && (buttons[j].innerText.toUpperCase() == placeholder[i].toUpperCase())) {
                     buttons[j].style.backgroundColor = 'green'
                 
@@ -176,8 +173,6 @@ enterButton.addEventListener('click', function() {
         }
         reveal()
     }
-    console.log(codedLetters)
-    console.log(decodedLetters)
 
 
  
@@ -462,7 +457,6 @@ if (currentGame.innerText == 'Speedle') { //Check that the game is speedle
 
 
 let dark = document.querySelector('.darkMode');
-console.log(dark)
 function toggleDark() {
     if (dark.getAttribute('src') == 'moon.png') {
         dark.src = "sun.png"

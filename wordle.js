@@ -269,7 +269,6 @@ document.addEventListener('keyup', function(e) {
 //Need to use this with a confirm box
 function resetGrid() {
     let parents = document.getElementsByClassName("letter")
-    console.log(parents)
     for (let i=0; i<30 ; i++) {
         parents[i].style.backgroundColor = ""
         parents[i].innerText = ""
@@ -339,7 +338,6 @@ if (currentGame.innerText == 'Speedle') { //Check that the game is speedle
 }
 
 let dark = document.querySelector('.darkMode');
-console.log(dark)
 function toggleDark() {
     if (dark.getAttribute('src') == 'moon.png') {
         dark.src = "sun.png"

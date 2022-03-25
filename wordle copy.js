@@ -7,7 +7,6 @@ const validWords=["cigar","rebut","sissy","humph","awake","blush","focal","evade
 let words = validWords
 let randomAnswer = words[Math.floor(Math.random() * words.length)];
 // let randomAnswer = 'easts';
-console.log(randomAnswer)
 
 let guesses = document.getElementsByClassName('guess');
 let enterButton = document.getElementById('enter')
@@ -56,6 +55,7 @@ let chronolRandomAnswer2 = words[Math.floor(Math.random() * words.length)];
 let alphabet = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
 let decodedWord = words[Math.floor(Math.random() * words.length)];
 let placeholder = chronolRandomAnswer1+chronolRandomAnswer2;
+console.log(placeholder)
 let wordToEncode = encoderWORD(placeholder, encoderArray)
 let codedAnswer = document.getElementById('decoder').children;
 // let keyWord = words[Math.floor(Math.random() * words.length)];
@@ -66,7 +66,6 @@ let decodedLetters = [] //This will store decoded letters
 let codedLetters = [] //This stores corresponding coded letters
 
 function answerUpdater() {
-    console.log(codedLetters)
     for (let i in placeholder) {
         if (codedLetters.includes(codedAnswer[i].innerText)) {
             codedAnswer[i].innerText = placeholder[i].toUpperCase()
@@ -88,10 +87,8 @@ function resetGame() {
     placeholder = chronolRandomAnswer1+chronolRandomAnswer2;
 
     wordToEncode = encoderWORD(placeholder, encoderArray)
-    console.log(placeholder)
 
     codedAnswer = document.getElementById('decoder').children;
-    console.log(codedAnswer)
     for (let i in codedAnswer) {
         codedAnswer[i].innerText = wordToEncode[i]
     }
@@ -147,7 +144,6 @@ enterButton.addEventListener('click', function() {
 
 
     randomAnswer = placeholder.toUpperCase()
-    console.log(greenCheck, randomAnswer)
     let case1 = chronolRandomAnswer1.toUpperCase()
     let case2 = chronolRandomAnswer2.toUpperCase()
     let wordOneCounter = 0
@@ -181,8 +177,6 @@ enterButton.addEventListener('click', function() {
         }
         reveal()
     }
-    console.log(codedLetters)
-    console.log(decodedLetters)
 
  
 
@@ -466,7 +460,6 @@ if (currentGame.innerText == 'Speedle') { //Check that the game is speedle
 
 
 let dark = document.querySelector('.darkMode');
-console.log(dark)
 function toggleDark() {
     if (dark.getAttribute('src') == 'moon.png') {
         dark.src = "sun.png"

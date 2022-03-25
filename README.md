@@ -13,7 +13,6 @@ In this project created by aspiring software engineer Will Sikora three game mod
 The project can be found and played [HERE](https://vasiliisikora.github.io/ga-wordle/)
 
 ## Wordle Original
----
 A recreation of the same base gameplay created by Josh Wardle, this version gives players the ability to play the original viral game within the Wordle Project ecosystem on the fly. With an updated visual interface this game mode will be a good break from the other modes offered!
 
 ### How to Play
@@ -27,7 +26,6 @@ Letter backgrounds:
 - Grey: The letter is not in the word in any spot
 
 ## Speedle
----
 This game mode is designed for players that feel the reason Wordle was purchased by New York Times is that its old, slow and boring just like the newspapers New York Times makes. 
 
 In this game mode players have 3 minutes to solve as many Wordles as possible with their streak being tallied as they guess correctly. Don't be surprised if you get a jolt as you build momentum! 
@@ -39,7 +37,6 @@ In this game mode players have 3 minutes to solve as many Wordles as possible wi
 **NOTE**: Win streak will reset if the start⚡ reset button is pressed!
 
 ## Cryptol *(Previously Chronol)*
----
 Currently a work in progress, Cryptol looks to redefine the Wordle-type gamespace. 
 
 Cryptol is a visionary new game mode that has the player decrypt an 8 letter word called a Cryptol.
@@ -55,7 +52,6 @@ Cryptol is a visionary new game mode that has the player decrypt an 8 letter wor
 - After each round of unsuccessful guesses the a letter in the encrypted answer is revealed
 
 ## Cryptol 2.0 *(Previously Chronol)*
----
 Currently a work in progress, Cryptol 2.0 builds on the success of Cryptol by offering the same experience but where the user guesses 2 five letter words instead of 1 eight letter word.
 
 ### How to Play

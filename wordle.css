@@ -194,12 +194,7 @@ header {
   body {
       min-width: 375px;
   }
-
-/* header {
-    background-image: url(matrix.gif);
-} */
-
-.darkMode {
+  .darkMode {
     flex: 0 1 auto;
     margin-left: 0;
     transition-duration: 0.25s;
@@ -214,3 +209,8 @@ header {
     background-color: white;
     color: rgb(0, 0, 0)
 }
+
+/* header {
+    background-image: url(matrix.gif);
+} */
+

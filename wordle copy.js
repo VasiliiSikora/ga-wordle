@@ -467,7 +467,6 @@ function toggleDark() {
         document.body.classList.add('dark')
         document.body.querySelector('header').classList.remove('light')
         document.body.querySelector('header').classList.add('dark')
-        console.log(dark)
     } else {
         dark.src = "moon.png"
         document.body.classList.remove('dark')

@@ -204,6 +204,8 @@ if (currentGame.innerText == 'Wordle') {
 
 )
 
+
+
 //Below is the code for the keyboard functionality
 let keys = document.getElementsByClassName('key');
 //Add event listeners to all keys
@@ -345,7 +347,6 @@ function toggleDark() {
         document.body.classList.add('dark')
         document.body.querySelector('header').classList.remove('light')
         document.body.querySelector('header').classList.add('dark')
-        console.log(dark)
     } else {
         dark.src = "moon.png"
         document.body.classList.remove('dark')

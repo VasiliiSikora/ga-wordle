@@ -208,7 +208,9 @@ header {
 
 .dark {
     background-color: rgb(87, 87, 87);
+    color: white
 }
 .light {
     background-color: white;
+    color: rgb(0, 0, 0)
 }

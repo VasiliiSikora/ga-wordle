@@ -130,6 +130,8 @@ enterButton.addEventListener('click', function() {
         for (let j=0; j<buttons.length; j++) {
             if (buttons[j].innerText.toUpperCase() == output[i]) {
                 if (buttons[j].style.backgroundColor == 'green') {         
+                } else if ((buttons[j].style.backgroundColor == 'gold') && (kids[i].style.backgroundColor == 'grey')){
+                    continue
                 } else {
                     buttons[j].style.backgroundColor = kids[i].style.backgroundColor
                 }
@@ -267,6 +269,7 @@ document.addEventListener('keyup', function(e) {
 //Need to use this with a confirm box
 function resetGrid() {
     let parents = document.getElementsByClassName("letter")
+    console.log(parents)
     for (let i=0; i<30 ; i++) {
         parents[i].style.backgroundColor = "white"
         parents[i].innerText = ""
@@ -335,3 +338,22 @@ if (currentGame.innerText == 'Speedle') { //Check that the game is speedle
 
 }
 
+let dark = document.querySelector('.darkMode');
+console.log(dark)
+function toggleDark() {
+    if (dark.getAttribute('src') == 'moon.png') {
+        dark.src = "sun.png"
+        document.body.classList.remove('light')
+        document.body.classList.add('dark')
+        document.body.querySelector('header').classList.remove('light')
+        document.body.querySelector('header').classList.add('dark')
+        console.log(dark)
+    } else {
+        dark.src = "moon.png"
+        document.body.classList.remove('dark')
+        document.body.classList.add('light')
+        document.body.querySelector('header').classList.remove('dark')
+        document.body.querySelector('header').classList.add('light')
+    }
+
+}

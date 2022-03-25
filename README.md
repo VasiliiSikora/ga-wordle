@@ -10,6 +10,8 @@ In this project created by aspiring software engineer Will Sikora three game mod
 - Speedle
 - Cryptol
 
+The project can be found and played [HERE](https://vasiliisikora.github.io/ga-wordle/)
+
 ## Wordle Original
 ---
 A recreation of the same base gameplay created by Josh Wardle, this version gives players the ability to play the original viral game within the Wordle Project ecosystem on the fly. With an updated visual interface this game mode will be a good break from the other modes offered!

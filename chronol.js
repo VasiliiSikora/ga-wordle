@@ -461,5 +461,23 @@ if (currentGame.innerText == 'Speedle') { //Check that the game is speedle
 }
 
 
+let dark = document.querySelector('.darkMode');
+console.log(dark)
+function toggleDark() {
+    if (dark.getAttribute('src') == 'moon.png') {
+        dark.src = "sun.png"
+        document.body.classList.remove('light')
+        document.body.classList.add('dark')
+        document.body.querySelector('header').classList.remove('light')
+        document.body.querySelector('header').classList.add('dark')
+        console.log(dark)
+    } else {
+        dark.src = "moon.png"
+        document.body.classList.remove('dark')
+        document.body.classList.add('light')
+        document.body.querySelector('header').classList.remove('dark')
+        document.body.querySelector('header').classList.add('light')
+    }
 
+}
 

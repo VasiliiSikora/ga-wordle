@@ -24,7 +24,7 @@ body div {
 }
 header {
     text-align: center;
-    border-bottom: 0.5px solid gray;
+    border-bottom: 0.5px solid rgb(0, 0, 0);
     padding-bottom: 5px;
     margin: 15px;
 
@@ -40,13 +40,11 @@ header {
     display: flex;
     flex-direction: column;
     align-items: center;
-    box-shadow: 5px 5px 15px rgb(0, 0, 0, .3), -8px -8px 15px rgb(245, 245, 245, .25);
     border-radius: 20px;
     flex: 0 0 50px;
 }
 .keyboard {
     margin: 10px 0 0 0;
-    background-color: #b9b9b9;
 }
 body {
     display: flex;
@@ -73,7 +71,7 @@ body {
     width: 40px;
     border-radius: 10px;
     border: 2px solid #a3b1c6;
-    box-shadow: 3px 3px 15px rgb(0, 0, 0, .3), -5px -5px 15px rgb(245, 245, 245, .25);
+    box-shadow: 3px 3px 15px rgba(255, 255, 255, 0.3), -5px -5px 15px rgb(245, 245, 245, .25);
     /* margin: 5px; */
     background: #1d1d1d;
     color: white;
@@ -201,3 +199,16 @@ header {
     background-image: url(matrix.gif);
 } */
 
+.darkMode {
+    flex: 0 1 auto;
+    margin-left: 0;
+    transition-duration: 0.25s;
+    width: 40px;
+}
+
+.dark {
+    background-color: rgb(87, 87, 87);
+}
+.light {
+    background-color: white;
+}

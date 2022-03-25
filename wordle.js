@@ -271,7 +271,7 @@ function resetGrid() {
     let parents = document.getElementsByClassName("letter")
     console.log(parents)
     for (let i=0; i<30 ; i++) {
-        parents[i].style.backgroundColor = "white"
+        parents[i].style.backgroundColor = ""
         parents[i].innerText = ""
         parents[i].style.color = "black"
     }

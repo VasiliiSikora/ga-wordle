@@ -401,7 +401,7 @@ function resetGrid() {
         if (!(currentGame.innerText == 'Cryptol') && (i==30)) {
             break
         } else {
-            parents[i].style.backgroundColor = "white"
+            parents[i].style.backgroundColor = ""
             parents[i].innerText = ""
             parents[i].style.color = "black"
         }

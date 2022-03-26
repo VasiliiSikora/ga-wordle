@@ -55,8 +55,9 @@ let chronolRandomAnswer2 = words[Math.floor(Math.random() * words.length)];
 let alphabet = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
 let decodedWord = words[Math.floor(Math.random() * words.length)];
 let placeholder = chronolRandomAnswer1+chronolRandomAnswer2;
-console.log(placeholder)
+// console.log(placeholder)
 let wordToEncode = encoderWORD(placeholder, encoderArray)
+
 let codedAnswer = document.getElementById('decoder').children;
 // let keyWord = words[Math.floor(Math.random() * words.length)];
 let keyWord = alphabet[Math.floor(Math.random() * alphabet.length)]
@@ -85,7 +86,7 @@ function resetGame() {
     alphabet = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
 
     placeholder = chronolRandomAnswer1+chronolRandomAnswer2;
-
+    console.log(placeholder)
     wordToEncode = encoderWORD(placeholder, encoderArray)
 
     codedAnswer = document.getElementById('decoder').children;

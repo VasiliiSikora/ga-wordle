@@ -145,60 +145,68 @@ let winChecker = 0
 
 if (currentGame.innerText == 'Wordle') {
         //Timeout function used to allow transition of colours before ending
-        setTimeout(function () {
+
             for (let i in randomAnswer) {
                 if (kids[i].style.backgroundColor == 'green') {
                     winChecker++
                 }
             }
-            if (winChecker == 5) {
-                //Use window.confirm to allow user to continue streak or restart streak
-                const continueButton = window.confirm("Continue Streak?")
-                if (continueButton) {
-                    streakCounter++;
-                    resetGrid();
-                } else {
-                    streakCounter=0;
-                    resetGrid();
+            setTimeout(function () {
+                if (winChecker == 5) {
+                    //Use window.confirm to allow user to continue streak or restart streak
+                    const continueButton = window.confirm("Continue Streak?")
+                    if (continueButton) {
+                        streakCounter++;
+                        resetGrid();
+                    } else {
+                        streakCounter=0;
+                        resetGrid();
+                    }
+                    // alert(`You win! ${randomAnswer.toUpperCase()} was the word!`)
+                    // streakCounter++ //Add one to the streak if you win
+                    // resetGrid() //Reset the grid colouring for another round
+                    return
                 }
-                // alert(`You win! ${randomAnswer.toUpperCase()} was the word!`)
-                // streakCounter++ //Add one to the streak if you win
-                // resetGrid() //Reset the grid colouring for another round
-                return
-            } 
+            }, 260)
             output = ''
             guessCounter++
-            if (guessCounter == 6) {
-                alert(`You LOSE! ${randomAnswer.toUpperCase()} was the word!`)
-                streakCounter = 0; //Reset the streak if you lose
-                resetGrid() //Reset the grid colouring for another round
-                return
-            }
-        }, 260)
+            setTimeout(function () {
+                if (guessCounter == 6) {
+                    alert(`You LOSE! ${randomAnswer.toUpperCase()} was the word!`)
+                    streakCounter = 0; //Reset the streak if you lose
+                    resetGrid() //Reset the grid colouring for another round
+                    return
+                }
+            }, 260)
+
         
     } else if (currentGame.innerText == 'Speedle') {
         let currentStreak = document.getElementById('streak');
-        setTimeout(function () {
+
             for (let i in randomAnswer) {
                 if (kids[i].style.backgroundColor == 'green') {
                     winChecker++
                 }
             }
-            if (winChecker == 5) {
-                let winSound = new Audio("lightning.wav");
-                winSound.play()
-                streakCounter++ //Add one to the streak if you win
-                currentStreak.innerText = `Current Streak: ${streakCounter}`
-                resetGrid() //Reset the grid colouring for another round
-                return
-            } 
+            setTimeout(function () {
+                if (winChecker == 5) {
+                    let winSound = new Audio("lightning.wav");
+                    winSound.play()
+                    streakCounter++ //Add one to the streak if you win
+                    currentStreak.innerText = `Current Streak: ${streakCounter}`
+                    resetGrid() //Reset the grid colouring for another round
+                    return
+                } 
+            }, 260)
             output = ''
             guessCounter++
-            if (guessCounter == 6) {
-                resetGrid() //Reset the grid colouring for another round
-                return
-            }
-        }, 260)
+            setTimeout(function () {
+                if (guessCounter == 6) {
+                    resetGrid() //Reset the grid colouring for another round
+                    return
+                }
+            }, 260)
+
     } 
 }
 
@@ -220,8 +228,8 @@ for (let keyElement of keys) {
                     if (output=="") {kids[0].innerText=""}
                     else {
                         for (let i=0; i<output.length; i++) {
-                            output = output.toUpperCase();
-                            kids[i].innerText = output[i]
+                            // output = output.toUpperCase();
+                            // kids[i].innerText = output[i]
                             kids[i+1].innerText=""
                         }
                     }
@@ -231,9 +239,12 @@ for (let keyElement of keys) {
                 default:
                     //This if statement stops user from entering more letters after 5. 
                     if (output.length == 5) {
-                        break
+                        output = output
+                    } else {
+                        output += key;
+                        console.log(output)
                     }
-                    output += key;
+
             }
             for (let i=0; i<output.length; i++) {
                 output = output.toUpperCase();
@@ -250,6 +261,9 @@ document.addEventListener('keyup', function(e) {
     let keys = document.getElementsByClassName('key');
     let del = document.getElementById('del')
     for (let keyElement of keys) {
+        if (output.length == 5) {
+            output = output
+        }
         if (e.key == keyElement.textContent) {
             let clickEvent = new Event('click')
             keyElement.dispatchEvent(clickEvent)

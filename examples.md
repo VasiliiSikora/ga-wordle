@@ -205,3 +205,49 @@ function encoderWORD(string, array) {
     return enCodedWord
 }
 ```
+
+## Win Sound Effects
+
+```javascript
+    if (winChecker == 5) {
+        let winSound = new Audio("lightning.wav");
+        winSound.play()
+```
+
+## Countdown Timer
+
+```javascript
+let countDown = document.getElementById('countdown');
+    //Pull the current date and set 90s ahead to give countdown something to reduce
+    let now = new Date()
+    let time = now.getTime();
+    let future = time + 180000;
+    function startTimer() {
+        now = new Date()
+        time = now.getTime();
+        future = time + 180000;
+        streakCounter = 0;
+        let currentStreak = document.getElementById('streak');
+        currentStreak.innerText = `Current Streak: ${streakCounter}`
+    }
+
+    function updateTimer() {
+        let newNow = new Date();
+        
+        let remainingTime = future - newNow;
+        //Set conditions for timeout
+        if (Math.ceil(remainingTime/1000) == 0) {
+            countDown.innerText = 'OUTTA TIME'
+            
+            let currentStreak = document.getElementById('streak');
+            currentStreak.innerText = `Current Streak: ${streakCounter}`
+            alert(`Your Speedle streak was ${streakCounter}`)
+            streakCounter = 0;
+        } else {
+            //Countdown, setTimeout as a recursive function to continuously redisplay number
+            countDown.innerText = `Remaining Time: ${Math.ceil(remainingTime/1000)}s`
+            setTimeout(updateTimer,1000)
+            return (remainingTime/1000);
+        }
+    }
+```
